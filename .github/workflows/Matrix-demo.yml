@@ -11,6 +11,12 @@ jobs:
       matrix:
         node-versions: [12,14,18]
         os-configs: [ubuntu-latest, windows-latest]
+        include: 
+          - node-versions: 18
+            os-configs: ubuntu-latest
+        exclude:
+          - node-versions: 12
+            os-configs: windows-latest
     runs-on: ${{ matrix.os-configs }}
     steps:
       - name: Get code
