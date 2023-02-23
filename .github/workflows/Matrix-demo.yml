@@ -6,7 +6,7 @@ on:
 jobs:
 
   build:
-    contnue-on-error: true
+    continue-on-error: true
     strategy: 
       matrix:
         node-versions: [12,14,18]
