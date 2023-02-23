@@ -7,9 +7,18 @@ on:
       required: false
       default: dist
       type: string
+    # secrets:
+    #   secret_name: 
+          # required: true
+    outputs:
+      result: 
+        descrption: result of deployment operation
+        value: ${{jobs.outputs.outcome}}
 
 jobs:
   deploy:
+    outputs: 
+      outcome: ${{steps.step_result.outputs.step-res}}
     runs-on: ubuntu-latest
     steps:
       - name: get code
@@ -21,3 +30,7 @@ jobs:
       - name : output information
         run: |
           echo "deploying reusable workflow"
+      - name: set result o/p
+        id: step_result
+        run: |
+          echo "step-res = success" >>$GITHUB_OUTPUT
